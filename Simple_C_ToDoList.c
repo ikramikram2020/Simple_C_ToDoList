@@ -18,7 +18,7 @@ int ikram = 0;
 void addTask() {
     if (ikram < 100) {
         printf("Enter your task: ");
-        scanf("%s", kawthar[ikram]);
+        scanf("%s", kawthar[ikram]);// scanf is used  to read and store user input or data from files.
         ikram++;
         printf("Task added successfully!\n");
     } else {
