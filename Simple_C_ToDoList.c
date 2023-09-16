@@ -9,7 +9,7 @@
  * 4=> delet task
  * 5 Return => quit
  */
-char kawthar[100][100];
+char kawthar[100][100]; //=>  two-dimensional character array
 int ikram = 0;
 
 void addTask() {
