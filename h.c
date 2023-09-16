@@ -1,72 +1,57 @@
 #include <stdio.h>
-#include "main.h"
-/**
- * Welcome to your to-do list!
- * creating 4 functions
- * 1=> add task
- * 2=> show tasks
- * 3=> edit task
- * 4=> delet task
- * 5 Return => quit
- */
-char kawthar[100][100];
+#include <string.h>
+
+
+
+char kawthar[100];
 int ikram = 0;
 
 void addTask() {
-    if (ikram < 100) {
+    if (taskCount < MAX_TASKS) {
         printf("Enter your task: ");
-        scanf("%s", kawthar[ikram]);
-        ikram++;
+        scanf("%s", taskDescriptions[taskCount]);
+        taskCount++;
         printf("Task added successfully!\n");
     } else {
-        printf("nothing\n");
+        printf("Task list is full!\n");
     }
 }
 
 void showTasks() {
-    if (ikram == 0) {
+    if (taskCount == 0) {
         printf("No tasks available.\n");
-    }
-    else {
+    } else {
         printf("Task List:\n");
-        for (int i = 0; i < ikram; i++) {
-            printf("%d. %s\n", i + 1, kawthar[i]);       //"i+1"to start numbering from 1 instead of 0
+        for (int i = 0; i < taskCount; i++) {
+            printf("%d. %s\n", i + 1, taskDescriptions[i]);
         }
     }
 }
 
 void deleteTask() {
-    if (ikram == 0) {
+    if (taskCount == 0) {
         printf("No tasks available to delete.\n");
     } else {
-        ikram--;
+        taskCount--;
         printf("Task deleted successfully!\n");
     }
 }
 
 void editTask() {
-    if (ikram == 0) {
-        printf("No tasks available to edit.\n");
-    } else {
-        printf("Enter the task number to edit: ");
-        int num;
-        scanf("%d", &num);
+    printf("Enter the task number to edit (1-%d): ", taskCount);
+    int taskNumber;
+    scanf("%d", &taskNumber);
 
-        if (num >= 1 && num <= ikram) {
-            printf("Enter the new task description: ");
-            scanf("%s", kawthar[num - 1]);
-            printf("Task edited successfully!\n");
-        }
-
-    }
+    printf("Enter the new task description: ");
+    scanf("%s", taskDescriptions[taskNumber - 1]);
+    printf("Task edited successfully!\n");
 }
-
 
 int main() {
     int choice;
 
     do {
-        printf("**Welcome to your to-do list**!\n");
+        printf("Welcome to your to-do list!\n");
         printf("Enter your choice:\n");
         printf("1 => Add task\n");
         printf("2 => Show tasks\n");
@@ -91,10 +76,11 @@ int main() {
             case 5:
                 printf("Goodbye!\n");
                 break;
-
-
+            default:
+                printf("Invalid choice. Please try again.\n");
         }
     } while (choice != 5);
 
     return 0;
 }
+

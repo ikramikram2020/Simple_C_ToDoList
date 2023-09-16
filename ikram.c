@@ -1,15 +1,7 @@
 #include <stdio.h>
-#include "main.h"
-/**
- * Welcome to your to-do list!
- * creating 4 functions
- * 1=> add task
- * 2=> show tasks
- * 3=> edit task
- * 4=> delet task
- * 5 Return => quit
- */
-char kawthar[100][100];
+
+
+char kawthar[100];
 int ikram = 0;
 
 void addTask() {
@@ -19,18 +11,17 @@ void addTask() {
         ikram++;
         printf("Task added successfully!\n");
     } else {
-        printf("nothing\n");
+        printf("Task list is full!\n");
     }
 }
 
 void showTasks() {
     if (ikram == 0) {
         printf("No tasks available.\n");
-    }
-    else {
+    } else {
         printf("Task List:\n");
         for (int i = 0; i < ikram; i++) {
-            printf("%d. %s\n", i + 1, kawthar[i]);       //"i+1"to start numbering from 1 instead of 0
+            printf("%d. %s\n", i + 1, kawthar[i]);
         }
     }
 }
@@ -48,25 +39,25 @@ void editTask() {
     if (ikram == 0) {
         printf("No tasks available to edit.\n");
     } else {
-        printf("Enter the task number to edit: ");
-        int num;
-        scanf("%d", &num);
+        printf("Enter the task number to edit (1-%d): ", ikram);
+        int taskNumber;
+        scanf("%d", &taskNumber);
 
-        if (num >= 1 && num <= ikram) {
+        if (taskNumber >= 1 && taskNumber <= ikram) {
             printf("Enter the new task description: ");
-            scanf("%s", kawthar[num - 1]);
+            scanf("%s", kawthar[taskNumber - 1]);
             printf("Task edited successfully!\n");
+        } else {
+            printf("Invalid task number. Please try again.\n");
         }
-
     }
 }
-
 
 int main() {
     int choice;
 
     do {
-        printf("**Welcome to your to-do list**!\n");
+        printf("Welcome to your to-do list!\n");
         printf("Enter your choice:\n");
         printf("1 => Add task\n");
         printf("2 => Show tasks\n");
@@ -91,10 +82,11 @@ int main() {
             case 5:
                 printf("Goodbye!\n");
                 break;
-
-
+            default:
+                printf("Invalid choice. Please try again.\n");
         }
     } while (choice != 5);
 
     return 0;
 }
+

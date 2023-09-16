@@ -1,16 +1,9 @@
 #include <stdio.h>
-#include "main.h"
-/**
- * Welcome to your to-do list!
- * creating 4 functions
- * 1=> add task
- * 2=> show tasks
- * 3=> edit task
- * 4=> delet task
- * 5 Return => quit
- */
+
+
+
 char kawthar[100][100];
-int ikram = 0;
+int ikram = 0;          
 
 void addTask() {
     if (ikram < 100) {
@@ -57,7 +50,7 @@ void editTask() {
             scanf("%s", kawthar[num - 1]);
             printf("Task edited successfully!\n");
         }
-
+        
     }
 }
 
@@ -91,10 +84,11 @@ int main() {
             case 5:
                 printf("Goodbye!\n");
                 break;
-
-
+            
+                
         }
     } while (choice != 5);
 
     return 0;
 }
+
