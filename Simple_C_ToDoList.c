@@ -43,13 +43,12 @@ void deleteTask() {
     if (ikram == 0) {
         printf("No tasks available to delete.\n");
     } else {
-        int taskNumber;
+        int num;
         printf("Enter the task number to delete: ");
-        scanf("%d", &taskNumber);
+        scanf("%d", &num);
 
-        if (taskNumber >= 1 && taskNumber <= ikram) {
-            
-            for (int i = taskNumber - 1; i < ikram - 1; i++) {
+        if (num >= 1 && num <= ikram) {
+            for (int i = num - 1; i < ikram - 1; i++) {
                 strcpy(kawthar[i], kawthar[i + 1]);
             }
             ikram--;
@@ -62,6 +61,7 @@ void deleteTask() {
         }
     }
 }
+
  
 
 
