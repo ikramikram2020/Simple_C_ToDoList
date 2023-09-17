@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include "main.h"
 /**
  * Welcome to your to-do list!
@@ -42,10 +43,30 @@ void deleteTask() {
     if (ikram == 0) {
         printf("No tasks available to delete.\n");
     } else {
-        ikram--;
-        printf("Task deleted successfully!\n");
+        int taskNumber;
+        printf("Enter the task number to delete: ");
+        scanf("%d", &taskNumber);
+
+        if (taskNumber >= 1 && taskNumber <= ikram) {
+            // Shift tasks to fill the gap
+            for (int i = taskNumber - 1; i < ikram - 1; i++) {
+                strcpy(kawthar[i], kawthar[i + 1]);
+            }
+            ikram--;
+            printf("Task deleted successfully!\n");
+        } else {
+            printf("Invalid task number. No task deleted.\n");
+        }
     }
 }
+        
+
+
+
+
+
+
+
 
 void editTask() {
     if (ikram == 0) {
