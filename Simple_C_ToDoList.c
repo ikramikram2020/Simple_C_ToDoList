@@ -10,7 +10,7 @@
  * 5 Return => quit
  */
 char kawthar[100][100]; //=>  two-dimensional character array
-int ikram = 0;
+int ikram = 0;// => to keep track of the number of tasks or elements in a list
 /*
  *[100] indicates that there are 100 rows in the array.
  *[100] indicates that each row can hold up to 100 characters.
