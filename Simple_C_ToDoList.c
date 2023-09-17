@@ -1,60 +1,67 @@
 #include <stdio.h>
 #include <string.h>
 #include "main.h"
+
 /**
  * Welcome to your to-do list!
- * creating 4 functions
- * 1=> add task
- * 2=> show tasks
- * 3=> edit task
- * 4=> delet task
+ * Creating 4 functions:
+ * 1 => addTask
+ * 2 => showTasks
+ * 3 => editTask
+ * 4 => deleteTask
  * 5 Return => quit
  */
-char kawthar[100][100]; //=>  two-dimensional character array
-int ikram = 0;// => to keep track of the number of tasks or elements in a list
+
+char taskList[100][100]; // A two-dimensional character array to store tasks
+int taskCount = 0;       // To keep track of the number of tasks or elements in the list
+
 /*
- *[100] indicates that there are 100 rows in the array.
- *[100] indicates that each row can hold up to 100 characters.
-*/
+ * [100] indicates that there are 100 rows in the array.
+ * [100] indicates that each row can hold up to 100 characters.
+ */
+
 void addTask() {
-    if (ikram < 100) {
+    if (taskCount < 100) {
         printf("Enter your task: ");
-        scanf("%s", kawthar[ikram]);// scanf is used  to read and store user input or data from files.
-        ikram++;
+        scanf("%s", taskList[taskCount]); // scanf is used to read and store user input or data from files.
+        taskCount++;
         printf("Task added successfully!\n");
     } else {
-        printf("nothing\n");
+        printf("Task list is full. Cannot add more tasks.\n");
     }
 }
 
 void showTasks() {
-    if (ikram == 0) {
+    if (taskCount == 0) {
         printf("No tasks available.\n");
     }
     else {
         printf("Task List:\n");
-        for (int i = 0; i < ikram; i++) {
-            printf("%d. %s\n", i + 1, kawthar[i]);       //"i+1"to start numbering from 1 instead of 0
+        for (int i = 0; i < taskCount; i++) {
+            printf("%d. %s\n", i + 1, taskList[i]); // "i+1" to start numbering from 1 instead of 0
         }
     }
 }
 
 void deleteTask() {
-    if (ikram == 0) {
+    if (taskCount == 0) {
         printf("No tasks available to delete.\n");
     } else {
-        int num;
+        int taskNumber; // This variable will store the task number you want to delete
         printf("Enter the task number to delete: ");
-        scanf("%d", &num);
+        scanf("%d", &taskNumber); // Read the number you enter from the keyboard and store it in the taskNumber variable.
 
-        if (num >= 1 && num <= ikram) {
-            for (int i = num - 1; i < ikram - 1; i++) {
-                strcpy(kawthar[i], kawthar[i + 1]);
+        if (taskNumber >= 1 && taskNumber <= taskCount) {
+            for (int i = taskNumber - 1; i < taskCount - 1; i++) {
+                strcpy(taskList[i], taskList[i + 1]);
             }
-            ikram--;
+            taskCount--;
+            // Start at the task to be deleted (taskNumber - 1),
+            // continue while there are tasks left (i < taskCount - 1),
+            // and move to the next task in each iteration (i++)
             printf("The task list after deleting the task is: \n");
-            for (int i = 0; i < ikram; i++) {
-                printf("%d. %s\n", i + 1, kawthar[i]);
+            for (int i = 0; i < taskCount; i++) {
+                printf("%d. %s\n", i + 1, taskList[i]);
             }
         } else {
             printf("Invalid task number. No task deleted.\n");
@@ -62,30 +69,22 @@ void deleteTask() {
     }
 }
 
- 
-
-
-
-
-
-
 void editTask() {
-    if (ikram == 0) {
+    if (taskCount == 0) {
         printf("No tasks available to edit.\n");
     } else {
         printf("Enter the task number to edit: ");
-        int num;
-        scanf("%d", &num);
+        int taskNumber;
+        scanf("%d", &taskNumber);
 
-        if (num >= 1 && num <= ikram) {
+        if (taskNumber >= 1 && taskNumber <= taskCount) {
             printf("Enter the new task description: ");
-            scanf("%s", kawthar[num - 1]);
+            scanf("%s", taskList[taskNumber - 1]);
             printf("Task edited successfully!\n");
         }
 
     }
 }
-
 
 int main() {
     int choice;
@@ -116,10 +115,11 @@ int main() {
             case 5:
                 printf("Goodbye!\n");
                 break;
-
-
+            default:
+                printf("Invalid choice. Please try again.\n");
         }
     } while (choice != 5);
 
     return 0;
 }
+
